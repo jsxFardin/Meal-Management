@@ -24,7 +24,10 @@ class LoginRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'username'          => 'required',
+            'password'          => 'required|min:6',
+            'device_name'       => 'required',
+            'remember_token'    => 'nullable',
         ];
     }
 }
