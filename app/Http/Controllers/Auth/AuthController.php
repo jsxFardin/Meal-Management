@@ -28,4 +28,8 @@ class AuthController extends BaseController
             return $this->sendError($error->getMessage(), JsonResponse::HTTP_UNPROCESSABLE_ENTITY, $error);
         }
     }
+
+    // public function logout() {
+    //     Auth::logout()
+    // }
 }
