@@ -33,12 +33,12 @@ class UserController extends BaseController
             ];
             $user = User::create($data);
 
-            if ($request->has('roles_id')) {
-                foreach ($request->roles_id as $key => $item) {
-                    $role = Role::find($item);
-                    $user->tags()->save($role);
-                }
-            }
+            // if ($request->has('roles_id')) {
+            //     foreach ($request->roles_id as $key => $item) {
+            //         $role = Role::find($item);
+            //         $user->tags()->save($role);
+            //     }
+            // }
 
             DB::commit();
 
