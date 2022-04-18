@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Enum\Status;
+// use App\Enum\Status;
+
+use App\Helpers\DataStatus;
 use App\Http\Controllers\BaseController;
 use App\Http\Requests\Auth\RegistrationRequest;
-use App\Models\Auth\Role;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -29,15 +30,12 @@ class UserController extends BaseController
                 'phone'             => $request->phone,
                 'email'             => $request->email,
                 'password'          => $request->password,
-                'status'            => $request->status ?? Status::$ACTIVE,
+                'status'            => $request->status ?? DataStatus::$ACTIVE,
             ];
             $user = User::create($data);
 
-            if ($request->has('roles_id')) {
-                foreach ($request->roles_id as $key => $item) {
-                    $role = Role::find($item);
-                    $user->tags()->save($role);
-                }
+            if ($request->has('roles')) {
+                $user->assignRole($request->roles);
             }
 
             DB::commit();

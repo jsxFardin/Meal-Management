@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use App\Models\Auth\Role;
+use App\Http\Controllers\BaseController;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
-class RoleController extends Controller
+class RoleController extends BaseController
 {
-    public function index(Request $request){
-        return Role::paginate(env('PAGE_LIMIT'));
+    public function index(){
+        $roles = Role::all();
+        return $this->sendSuccess(__('Data Found'), JsonResponse::HTTP_OK, $roles);
     }
 }
-
