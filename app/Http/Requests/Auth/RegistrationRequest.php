@@ -13,7 +13,7 @@ class RegistrationRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -28,7 +28,7 @@ class RegistrationRequest extends FormRequest
             'username'          => 'nullable',
             'phone'             => 'nullable|numeric',
             'email'             => 'required|email',
-            'roles_id'          => 'required',
+            'roles'          => 'required',
             'password'          => 'required|min:6',
             'c_password'        => 'required|min:6',
             'remember_token'    => 'nullable',
